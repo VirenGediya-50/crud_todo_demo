@@ -49,7 +49,7 @@ class Home extends Component {
   handleEditData = (id, newObj) => {
     let newTodoList = [...this.state.todoList];
     newTodoList.splice(id, 1);
-    newTodoList.splice(id, 0    , newObj);
+    newTodoList.splice(id, 0, newObj);
     this.setState(
       {
         todoList: [...newTodoList],

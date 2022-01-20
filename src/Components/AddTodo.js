@@ -15,11 +15,11 @@ const AddTodo = (props) => {
   useEffect(() => {
     setName(editData.name || '');
     setCategory(editData.category || '');
-  }, [show]);
+  }, [editData.category, editData.name, show]);
 
   const handleData = () => {
     if( name !== "" && category !== ""){
-      editData.id ? handleEditData( editData.id, { name, category})  :  addTodo({ name, category})
+      editData.id !== undefined ? handleEditData( editData.id, { name, category})  :  addTodo({ name, category})
     }else{
       alert("All field are required.")
     }
@@ -28,7 +28,7 @@ const AddTodo = (props) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{editData.id ? 'Edit' : 'Add'} Todo</Modal.Title>
+        <Modal.Title>{editData.id !== undefined ? 'Edit' : 'Add'} Todo</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -55,7 +55,7 @@ const AddTodo = (props) => {
           Close
         </Button>
         <Button variant="primary" onClick={() => handleData()}>
-          {editData.id ? 'Edit' : 'Add'}
+          {editData.id !== undefined ? 'Edit' : 'Add'}
         </Button>
       </Modal.Footer>
     </Modal>
